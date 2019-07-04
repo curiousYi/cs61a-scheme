@@ -145,7 +145,13 @@ def read_tail(src):
             # END PROBLEM 1
         elif src.current() == '.':
             # BEGIN PROBLEM 2
-            "*** YOUR CODE HERE ***"
+            src.remove_front()
+            value = scheme_read(src)
+            next_value = read_tail(src)
+            if next_value != nil:
+                raise SyntaxError('dotted list has too many values')
+            else:
+                return value
             # END PROBLEM 2
         else:
             # BEGIN PROBLEM 1
