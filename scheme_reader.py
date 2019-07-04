@@ -140,6 +140,7 @@ def read_tail(src):
             raise SyntaxError('unexpected end of file')
         elif src.current() == ')':
             # BEGIN PROBLEM 1
+            src.remove_front();
             return nil
             # END PROBLEM 1
         elif src.current() == '.':
