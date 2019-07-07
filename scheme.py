@@ -31,7 +31,10 @@ def scheme_eval(expr, env, _=None): # Optional third argument is ignored
         return SPECIAL_FORMS[first](rest, env)
     else:
         # BEGIN PROBLEM 5
-        "*** YOUR CODE HERE ***"
+        operator = scheme_eval(first, env)
+        check_procedure(operator)
+
+        return operator.eval_call(rest, env)
         # END PROBLEM 5
 
 def self_evaluating(expr):
@@ -41,7 +44,6 @@ def self_evaluating(expr):
 def scheme_apply(procedure, args, env):
     """Apply Scheme PROCEDURE to argument values ARGS (a Scheme list) in
     environment ENV."""
-    check_procedure(procedure)
     return procedure.apply(args, env)
 
 def eval_all(expressions, env):
@@ -113,8 +115,11 @@ class Procedure:
         unevaluated actual-parameter expressions and ENV as the environment
         in which the operands are to be evaluated."""
         # BEGIN PROBLEM 5
-        "*** YOUR CODE HERE ***"
-        # END PROBLEM 5
+        #see work below for primitiveProcedure
+        eval_lambda = lambda e: scheme_eval(e, env)
+        mapped_operands = operands.map(eval_lambda)
+        
+        return scheme_apply(self, mapped_operands, env)
 
 def scheme_procedurep(x):
     return isinstance(x, Procedure)
