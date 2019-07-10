@@ -7,7 +7,25 @@
 ;;; after the last test you wish to run.
 
 ;;; **********************************
-;;; *** Add more of your own here! ***
+;;; Custom tests by Yi
+;;; Evaluate atoms
+2
+; expect 2
+
+nil
+; expect ()
+
+(eval (define tau 6.28))
+; expect 6.28
+
+(eval 'tau)
+; expect 6.28
+
+tau
+; expect 6.28
+
+(+ (- 4 2) 5)
+; expect 7
 ;;; **********************************
 
 ;;; These are examples from several sections of "The Structure
