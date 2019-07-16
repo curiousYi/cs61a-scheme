@@ -107,7 +107,17 @@ class Frame:
         """
         child = Frame(self) # Create a new child with self as the parent
         # BEGIN PROBLEM 11
-        "*** YOUR CODE HERE ***"
+        """
+            Check that we have valid Pairs on both sides eventually?
+        """
+        if(len(formals) != len(vals)):
+            raise SchemeError('make sure number of variables and values are the same!')
+
+        while formals is not nil and vals is not nil:
+            first_var, first_val = formals.first, vals.first
+            child.define(first_var, first_val)
+            formals, vals = formals.second, vals.second
+
         # END PROBLEM 11
         return child
 
@@ -125,7 +135,7 @@ class Procedure:
         #see work below for primitiveProcedure
         eval_lambda = lambda e: scheme_eval(e, env)
         mapped_operands = operands.map(eval_lambda)
-        
+
         return scheme_apply(self, mapped_operands, env)
 
 def scheme_procedurep(x):
