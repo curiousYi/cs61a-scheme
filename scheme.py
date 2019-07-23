@@ -252,10 +252,9 @@ def do_define_form(expressions, env):
         # END PROBLEM 6
     elif isinstance(target, Pair) and scheme_symbolp(target.first):
         # BEGIN PROBLEM 10
-        old_second = expressions.second.first
-        lambda_expression = Pair('lambda', Pair(target.second, expressions.second))
-        new_definition_exp = Pair(target.first, scheme_eval(lambda_expression, env))
-        do_define_form(new_definition_exp, env)
+        formals = target.second
+        body = expressions.second
+        env.define(target.first, LambdaProcedure(formals, body, env))
         return target.first
         # END PROBLEM 10
     else:
