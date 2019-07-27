@@ -6,44 +6,14 @@ test = {
       'cases': [
         {
           'code': r"""
-          scm> (define x 1)
-          9d01e356a925e61e19645aef1b1fdd64
-          # locked
-          scm> (let ((x 5))
-          ....    (+ x 3))
-          7160af5f6893bd49bb63dee6b8320930
-          # locked
-          scm> x
-          2894dd5fa65c8aa8f2b9d920d0e542e0
-          # locked
-          """,
-          'hidden': False,
-          'locked': True
-        },
-        {
-          'code': r"""
-          scm> (let ((a 1) (b a)) b)
-          87c30138f7979b4f5a454aacfb191b98
-          # locked
-          # choice: SchemeError
-          # choice: 1
-          # choice: x
-          # choice: y
-          """,
-          'hidden': False,
-          'locked': True
-        },
-        {
-          'code': r"""
           scm> (let ((x 5))
           ....    (let ((x 2)
           ....          (y x))
           ....        (+ y (* x 2))))
-          5fb541ba24eaf504edc7eae61bda4f97
-          # locked
+          9
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         },
         {
           'code': r"""

@@ -349,6 +349,8 @@ def do_let_form(expressions, env):
     """Evaluate a let form."""
     check_form(expressions, 2)
     let_env = make_let_frame(expressions.first, env)
+    print('herewe go')
+    print(expressions)
     return eval_all(expressions.second, let_env)
 
 def make_let_frame(bindings, env):
@@ -359,7 +361,7 @@ def make_let_frame(bindings, env):
     if not scheme_listp(bindings):
         raise SchemeError('bad bindings list in let form')
     # BEGIN PROBLEM 15
-    "*** YOUR CODE HERE ***"
+    # make sure the bindings are valid
     # END PROBLEM 15
 
 def do_define_macro(expressions, env):
