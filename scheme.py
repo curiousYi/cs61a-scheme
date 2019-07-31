@@ -174,7 +174,7 @@ class PrimitiveProcedure(Procedure):
         try:
             return self.fn(*python_args)
         except TypeError:
-            raise SchemeError('wrong number of argumetns')
+            raise SchemeError('wrong number of arguments')
         # END PROBLEM 4
 
 class UserDefinedProcedure(Procedure):
@@ -456,7 +456,15 @@ class MuProcedure(UserDefinedProcedure):
         self.body = body
 
     # BEGIN PROBLEM 16
-    "*** YOUR CODE HERE ***"
+    def make_call_frame(self, args, env):
+        formals = self.formals
+        vals = args
+        while formals is not nil and vals is not nil:
+            first_var, first_val = formals.first, vals.first
+            env.define(first_var, first_val)
+            formals, vals = formals.second, vals.second
+
+        return env
     # END PROBLEM 16
 
     def __str__(self):
@@ -472,7 +480,7 @@ def do_mu_form(expressions, env):
     formals = expressions.first
     check_formals(formals)
     # BEGIN PROBLEM 16
-    "*** YOUR CODE HERE ***"
+    return MuProcedure(formals, expressions.second)
     # END PROBLEM 16
 
 SPECIAL_FORMS['mu'] = do_mu_form
